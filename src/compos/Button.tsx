@@ -6,7 +6,8 @@ interface ButtonProps{
   startIcon: ReactElement,
   size: "sm" | "md" | "lg",
   onClick?: () => void;
-  
+  fullWidth?: boolean,
+  loading?: boolean
 }
 
 const varientStyle = {
@@ -28,6 +29,6 @@ const defaultStyle:struct = {
 export function Button(props:ButtonProps ){
 
     return <button onClick={props.onClick}
-    className={`${varientStyle[props.varient]} ${defaultStyle[props.size]}`}>{props.startIcon? <div className="pr-2">{props.startIcon}</div>: null} {props.text}</button>
-
+    className={`${varientStyle[props.varient]} ${defaultStyle[props.size]}
+ ${props.fullWidth ? "w-full flex justify-center": ""} ${props.loading? 'opacity-45': ''} disabled:${props.loading} `}>{props.startIcon? <div className="pr-2">{props.startIcon}</div>: null} {props.text}</button>
 }
